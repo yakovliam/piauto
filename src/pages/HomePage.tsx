@@ -12,24 +12,31 @@ export default () => {
   const animation = useAnimation();
   const enabledColor = useColorModeValue('#2C7A7B', '#2C7A7B');
   const disabledColor = useColorModeValue('#7B341E', '#7B341E');
+  const backgroundColor = useColorModeValue('#ffffff', '#1A202C');
 
   const [playOn, { stop: stopOn }] = useSound(turnOnSound, { volume: 1.0 });
   const [playOff, { stop: stopOff }] = useSound(turnOffSound, { volume: 1.0 });
 
   const enabledSequence = async () => {
     await animation.start({
-      backgroundColor: ['#1A202C', enabledColor, '#1A202C'],
+      backgroundColor: [backgroundColor, enabledColor, backgroundColor],
     });
     animation.start({ scale: 1 });
   };
   const disabledSequence = async () => {
     await animation.start({
-      backgroundColor: ['#1A202C', disabledColor, '#1A202C'],
+      backgroundColor: [backgroundColor, disabledColor, backgroundColor],
     });
     animation.start({ scale: 1 });
   };
   return (
-    <Grid minH="100vh" p={3} as={motion.div} animate={animation}>
+    <Grid
+      minH="100vh"
+      p={3}
+      as={motion.div}
+      animate={animation}
+      bg={backgroundColor}
+    >
       <ColorModeSwitcher justifySelf="flex-end" />
       <Flex
         flexDir="row"

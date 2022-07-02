@@ -21,7 +21,10 @@ export default (props: ColorModeSwitcherProps) => {
       variant="ghost"
       color="current"
       marginLeft="2"
-      onClick={toggleColorMode}
+      onClick={() => {
+        toggleColorMode();
+        window.location.reload();
+      }}
       icon={<SwitchIcon />}
       aria-label={`Switch to ${text} mode`}
       // eslint-disable-next-line react/jsx-props-no-spreading
