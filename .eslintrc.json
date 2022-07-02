@@ -42,6 +42,7 @@
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
-    ]
+    ],
+    "no-alert": "off"
   }
 }
