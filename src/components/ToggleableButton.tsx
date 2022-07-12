@@ -37,9 +37,11 @@ export default (props: ToggleableButtonProps) => {
         borderRadius: '100%',
       }}
       whileHover={{ scale: 1.1 }}
-      w="sm"
-      h="xs"
-      padding="md"
+      // w="xs"
+      // h="2xs"
+      w={{ base: '2xs', xl: 'xs' }}
+      h={{ base: '3xs', xl: '2xs' }}
+      padding="sm"
       borderRadius="3xl"
       bg={isToggled ? enabledColor : disabledColor}
       onClick={() => {

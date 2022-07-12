@@ -1,6 +1,13 @@
 import * as React from 'react';
-import { ChakraProvider, Box, theme } from '@chakra-ui/react';
+import { ChakraProvider, Box, extendTheme } from '@chakra-ui/react';
 import HomePage from './pages/HomePage';
+
+const config = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+};
+
+const theme = extendTheme({ config });
 
 export default () => (
   <ChakraProvider theme={theme}>
