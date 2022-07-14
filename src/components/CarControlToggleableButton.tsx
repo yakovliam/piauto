@@ -1,16 +1,8 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  useBoolean,
-  useColorModeValue,
-  Text,
-  Icon,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading, useBoolean, Text, Icon } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-type ToggleableButtonProps = {
+type CarControlToggleableButtonProps = {
   title: string;
   subtitleToggled: string;
   subtitleUntoggled: string;
@@ -18,7 +10,7 @@ type ToggleableButtonProps = {
   onClick: (isToggled: boolean) => void;
 };
 
-export default (props: ToggleableButtonProps) => {
+export default (props: CarControlToggleableButtonProps) => {
   //     <motion.div
   //     className="container"
   //     whileHover={{ scale: 1.2, rotate: 90 }}
@@ -26,8 +18,11 @@ export default (props: ToggleableButtonProps) => {
   //   />
   const { onClick, title, subtitleToggled, subtitleUntoggled, icon } = props;
   const [isToggled, setIsToggled] = useBoolean();
-  const enabledColor = useColorModeValue('green.100', 'green.400');
-  const disabledColor = useColorModeValue('gray.100', 'gray.400');
+  const enabledColor = 'green.300';
+  const disabledColor = 'white';
+
+  const enabledTextColor = 'white';
+  const disabledTextColor = 'black';
 
   return (
     <Box
@@ -39,8 +34,8 @@ export default (props: ToggleableButtonProps) => {
       whileHover={{ scale: 1.1 }}
       // w="xs"
       // h="2xs"
-      w={{ base: '2xs', xl: 'xs' }}
-      h={{ base: '3xs', xl: '2xs' }}
+      w={{ base: '12rem' }}
+      h={{ base: '10rem' }}
       padding="sm"
       borderRadius="3xl"
       bg={isToggled ? enabledColor : disabledColor}
@@ -48,17 +43,33 @@ export default (props: ToggleableButtonProps) => {
         setIsToggled.toggle();
         onClick(!isToggled);
       }}
+      boxShadow="md"
     >
       <Flex
         minH="100%"
         flexDirection="column"
         alignItems="center"
         justify="center"
-        gap={5}
+        gap={2}
+        p={2}
       >
-        {icon !== undefined ? <Icon w={12} h={12} as={icon} /> : null}
-        <Heading>{title}</Heading>
-        <Text>{isToggled ? subtitleToggled : subtitleUntoggled}</Text>
+        {icon !== undefined ? (
+          <Icon
+            w={8}
+            h={8}
+            as={icon}
+            color={isToggled ? enabledTextColor : disabledTextColor}
+          />
+        ) : null}
+        <Heading
+          size="2xs"
+          color={isToggled ? enabledTextColor : disabledTextColor}
+        >
+          {title}
+        </Heading>
+        <Text color={isToggled ? enabledTextColor : disabledTextColor}>
+          {isToggled ? subtitleToggled : subtitleUntoggled}
+        </Text>
       </Flex>
     </Box>
   );
